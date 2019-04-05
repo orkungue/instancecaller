@@ -1,0 +1,104 @@
+<script src="https://code.jquery.com/jquery-latest.js"></script>
+
+    <div class="content">
+      <div class="textfield ">
+        <input id="url" type="text" class="textfield__input" required="true">
+        <label for="url" class="textfield__label">URL:</label>
+        <span class="textfield__tip">Example:(ogprojects/public/images/pixel.png):</span>
+      </div>
+
+      <div class="textfield">
+        <input id="name" type="text" class="textfield__input"  required="true">
+        <label for="name" class="textfield__label">Name:</label>
+        <span class="textfield__tip">Please enter the name from ur Site</span>
+      </div>
+      <div class="textfield">
+        <input id="frommail" type="text" class="textfield__input"  required="true">
+        <label for="frommail" class="textfield__label">E-Mail:</label>
+        <span class="textfield__tip">From - email</span>
+      </div>
+      <div class="textfield">
+        <input id="tomail" type="text" class="textfield__input"  required="true">
+        <label for="tomail" class="textfield__label">E-Mail:</label>
+        <span class="textfield__tip">To - email</span>
+      </div>
+      <div id="submit" style="border-top: 1px solid black; border-bottom: 1px solid black; width: 50%; margin-top: 50px; text-align: center; cursor: pointer;">
+        <p>
+          Generate
+        </p>
+      </div>
+    </div>
+
+    <script>
+    $('#submit').click(function(){
+      var url = $('#url').val();
+      var name = $('#name').val();
+      var from = $('#frommail').val();
+      var to = $('#tomail').val();
+
+      $.ajax({
+        type:'GET',
+        url:'/build/build_yml',
+        data:{ url: url, name: name, from: from, to: to },
+        success: function(data){
+
+        }
+      });
+    });
+/*
+    $j.ajax({
+  type:'POST',
+  url:'/shipment_flow/remove_shipment_flow_from_dcr',
+  data:{ ids:ids.join(";"), dcr_id:dcr_id },
+  success: function(data){
+    $j('#'+grid_id+'-hidden input[name=\"ids[]\"]:checked').each(function() { $j(this).remove(); });
+    $j('#grid_295bcc13f2b2288ee709e32c4ac9ccf2-hidden input[name=\"ids[]\"]:checked').each(function() { $j(this).remove(); });
+    SlickGridReload(grid_id);
+    SlickGridReload("grid_295bcc13f2b2288ee709e32c4ac9ccf2");
+  }
+});
+*/
+</script>
+<style>
+html, body, .content {
+  height: 100%;
+}
+
+.content {
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.textfield {
+  position: relative;
+  margin-bottom: 20px;
+}
+.textfield__input {
+  display: block;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.38);
+  height: 32px;
+  padding: 8px 0 8px 80px;
+  margin-bottom: 5px;
+}
+.textfield__input:focus {
+  outline: none;
+}
+.textfield__label {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 16px;
+}
+.textfield__tip {
+  display: block;
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.38);
+}
+
+
+</style>
